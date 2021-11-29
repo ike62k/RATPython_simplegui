@@ -1,2 +1,3 @@
 # RATPython_simplegui
 RIFEAutomationToolPythonのGUI動作用アドオン
+
