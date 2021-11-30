@@ -1,8 +1,8 @@
 # RATPython_simplegui
 [RIFEAutomationToolPython](https://github.com/ike62k/RIFEAutomationToolPython)のGUI動作用アドオン。左記のプログラムに付け加える形で動作します<br>
-プログラム本体のダウンロードはこちらから[RIFEAutomationToolPython](https://github.com/ike62k/RIFEAutomationToolPython/release)
+プログラム本体のダウンロードは[こちら](https://github.com/ike62k/RIFEAutomationToolPython/release)から
 
-本アドオンのダウンロードはこちらから[RATPython_simplegui]()
+本アドオンのダウンロードは[こちら]()から
 
 # 注意事項
 1. 補完対象のパスに半角スペース(' ')が含まれているとうまく動作しません
@@ -23,7 +23,7 @@
 出力ファイル : コンテナフォーマット→mov(Quicktime) / 映像コーデック→ユーザー指定 /  音声コーデック→ユーザー指定 
 
 # 使い方
-1. [RIFE-Automation-Python](https://github.com/ike62k/RIFE-Automation-Python)の環境を作成する
+1. [RIFEAutomationToolPython](https://github.com/ike62k/RIFEAutomationToolPython)の環境を作成する
 2. 上記ファイルやffmpegなどと同じフォルダにこのソフトウェアを貼り付ける
 3. [PySimpleGUI](https://pysimplegui.readthedocs.io/en/latest/)をインストールする
 4. このソフトウェアをPythonで実行し、指示に従う
