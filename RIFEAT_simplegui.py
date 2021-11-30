@@ -1,3 +1,5 @@
+#RIFE AutomationTool Python SimpleGUI Ver1.0.1 2021/11/30
+
 import PySimpleGUI as sg
 import os
 import concurrent.futures
@@ -37,13 +39,13 @@ systemrunner = False
 startchecker = False
 endchecker = False
 closetab = False
-themename = "LightGreen6" #https://pysimplegui.readthedocs.io/en/latest/readme/#themes
+themename = str(read_default.get("THEME")) #https://pysimplegui.readthedocs.io/en/latest/readme/#themes
 
 #from以下には使用したいRIFE-AutomationToolのファイル名を記入(基本的にバージョンアップごとに機能が変わっているので、変更は完全非推奨)
 from RIFEAT import mainfunc
 
 
-def processfunc(rv,ip,br,pr,jq,ru,vl):
+def processfunc(rv,ip,br,pr,jq,ru,vl,cd):
     rifever = rv
     interpolation = ip
     video_list = vl
@@ -51,13 +53,14 @@ def processfunc(rv,ip,br,pr,jq,ru,vl):
     picture = pr
     jpgquality = jq
     rifeusage = ru
+    codec = cd
     for i in range (len(video_list)):
         try:
             print(f"{video_list[i]}の補完処理を開始します")
             target_video = os.path.relpath(video_list[i])
             print(target_video)
 
-            mainfunc(target_video,True,rifever,interpolation,bitrate,picture,jpgquality,rifeusage)
+            mainfunc(target_video,True,rifever,interpolation,bitrate,picture,jpgquality,rifeusage,codec)
         except:
             print(f"{video_list[i]}の補完処理に失敗しました")
         else:
@@ -146,6 +149,7 @@ while True:
         window["-picture-"].update
         window["-jpgquality-"].update
         window["-rifeusage-"].update
+        window["-codec-"].update
 
         rifever = str(values["-rifever-"])
         interpolation = str(values["-interpolation-"])
@@ -153,12 +157,13 @@ while True:
         picture = str(values["-picture-"])
         jpgquality = str(values["-jpgquality-"])
         rifeusage = str(values["-rifeusage-"])
+        codec = str(values["-codec-"])
 
 
         window["開始"].update(disabled=True)
 
         if __name__ == "__main__":
             process = concurrent.futures.ThreadPoolExecutor(max_workers=1)
-            process.submit(processfunc,rifever,interpolation,bitrate,picture,jpgquality,rifeusage,video_list)
+            process.submit(processfunc,rifever,interpolation,bitrate,picture,jpgquality,rifeusage,video_list,codec)
 
 sys.exit
