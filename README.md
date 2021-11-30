@@ -1,5 +1,8 @@
 # RATPython_simplegui
-[RIFEAutomationToolPython](https://github.com/ike62k/RIFEAutomationToolPython)のGUI動作用アドオン
+[RIFEAutomationToolPython](https://github.com/ike62k/RIFEAutomationToolPython)のGUI動作用アドオン。左記のプログラムに付け加える形で動作します
+プログラム本体のダウンロードはこちらから[RIFEAutomationToolPython](https://github.com/ike62k/RIFEAutomationToolPython/release)
+
+本アドオンのダウンロードはこちらから[RATPython_simplegui]()
 
 # 注意事項
 1. 補完対象のパスに半角スペース(' ')が含まれているとうまく動作しません
