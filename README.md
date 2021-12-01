@@ -1,5 +1,6 @@
 # RATPython_simplegui
 [RIFEAutomationToolPython](https://github.com/ike62k/RIFEAutomationToolPython)のGUI動作用アドオン。左記のプログラムに付け加える形で動作します<br>
+Python本体に付け加えて、外部ライブラリである[PySimpleGUI](https://pysimplegui.readthedocs.io/en/latest/)を使用しています<br>
 プログラム本体のダウンロードは[こちら](https://github.com/ike62k/RIFEAutomationToolPython/releases)から
 
 本アドオンのダウンロードは[こちら](https://github.com/ike62k/RATPython_simplegui/releases)から
