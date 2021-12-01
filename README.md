@@ -2,7 +2,7 @@
 [RIFEAutomationToolPython](https://github.com/ike62k/RIFEAutomationToolPython)のGUI動作用アドオン。左記のプログラムに付け加える形で動作します<br>
 プログラム本体のダウンロードは[こちら](https://github.com/ike62k/RIFEAutomationToolPython/releases)から
 
-本アドオンのダウンロードは[こちら]()から
+本アドオンのダウンロードは[こちら](https://github.com/ike62k/RATPython_simplegui/releases)から
 
 # 注意事項
 1. 補完対象のパスに半角スペース(' ')が含まれているとうまく動作しません
