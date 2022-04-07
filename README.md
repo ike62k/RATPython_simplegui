@@ -22,7 +22,7 @@ Python本体に付け加えて、外部ライブラリである[PySimpleGUI](htt
 
 # 対応動画  
 入力ファイル : ffmpegで動画ファイルとして読み込めるほとんどすべての映像/音声形式  
-出力ファイル : コンテナフォーマット→mov(Quicktime) / 映像コーデック→ユーザー指定 /  音声コーデック→ユーザー指定 
+出力ファイル : コンテナフォーマット→入力ファイルと同じ / 映像コーデック→ユーザー指定 /  音声コーデック→ユーザー指定 
 
 # 使い方
 1. [RIFEAutomationToolPython](https://github.com/ike62k/RIFEAutomationToolPython)の環境を作成する
