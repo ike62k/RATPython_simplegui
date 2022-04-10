@@ -1,4 +1,4 @@
-#RIFE AutomationTool Python SimpleGUI Ver1.0.1 2021/11/30
+#RIFE AutomationTool Python SimpleGUI Ver1.1 2022/4
 
 import PySimpleGUI as sg
 import os
@@ -7,27 +7,25 @@ import sys
 import configparser
 
 
-P_filepath=os.path.dirname(__file__)
-os.chdir(P_filepath)
+os.chdir(os.path.dirname(__file__))
 
 
-config_ini = configparser.ConfigParser()
-config_ini.read("RAT_simpleguiconfig.ini", encoding="utf-8")
-
-read_default = config_ini["DEFAULT"]
+configdata = configparser.ConfigParser()
+configdata.read("RAT_simpleguiconfig.ini", encoding="utf-8")
+configdata = configdata["DEFAULT"]
 
 
 #初期設定
 Basefile =""
 video_list = []
 result = ""
-Default_ver = str(read_default.get("RIFEVER"))
-Default_interpolation = str(read_default.get("INTERPOLATION"))
-Default_bitrate = str(read_default.get("BITRATE"))
-Default_codec = str(read_default.get("CODEC"))
-Default_picture = str(read_default.get("PICTURE"))
-Default_jpgquality = str(read_default.get("JPGQUALITY"))
-Default_rifeusage = str(read_default.get("RIFEUSAGE"))
+Default_ver = str(configdata.get("RIFEVER"))
+Default_interpolation = str(configdata.get("INTERPOLATION"))
+Default_bitrate = str(configdata.get("BITRATE"))
+Default_codec = str(configdata.get("CODEC"))
+Default_picture = str(configdata.get("PICTURE"))
+Default_jpgquality = str(configdata.get("JPGQUALITY"))
+Default_rifeusage = str(configdata.get("RIFEUSAGE"))
 interpolation = ""
 rifever = ""
 bitrate = ""
@@ -39,32 +37,22 @@ systemrunner = False
 startchecker = False
 endchecker = False
 closetab = False
-themename = str(read_default.get("THEME")) #https://pysimplegui.readthedocs.io/en/latest/readme/#themes
+themename = str(configdata.get("THEME")) #https://pysimplegui.readthedocs.io/en/latest/readme/#themes
 
-#from以下には使用したいRIFE-AutomationToolのファイル名を記入(基本的にバージョンアップごとに機能が変わっているので、変更は完全非推奨)
+#from以下には使用したいRIFEAutomationToolのファイル名を記入(基本的にバージョンアップごとに機能が変わっているので、変更は完全非推奨)
 from RIFEAT import mainfunc
 
 
-def processfunc(rv,ip,br,pr,jq,ru,vl,cd):
-    rifever = rv
-    interpolation = ip
-    video_list = vl
-    bitrate = br
-    picture = pr
-    jpgquality = jq
-    rifeusage = ru
-    codec = cd
-    for i in range (len(video_list)):
+def processfunc(setting):
+    for video in video_list:
         try:
-            print(f"{video_list[i]}の補完処理を開始します")
-            target_video = os.path.relpath(video_list[i])
-            print(target_video)
+            print(f"{video}の補完処理を開始します")
 
-            mainfunc(target_video,True,rifever,interpolation,bitrate,picture,jpgquality,rifeusage,codec)
+            mainfunc(video,True,setting)
         except:
-            print(f"{video_list[i]}の補完処理に失敗しました")
+            print(f"{video}の補完処理に失敗しました")
         else:
-            print(f"{video_list[i]}の補完処理に成功しました")
+            print(f"{video}の補完処理に成功しました")
     print("すべての作業が完了しました")
     window["開始"].update(disabled=False)
 
@@ -152,6 +140,10 @@ while True:
         window["-codec-"].update
 
         rifever = str(values["-rifever-"])
+        if rifever == "無印":
+            rifever = ""
+        else:
+            rifever = "-" + rifever
         interpolation = str(values["-interpolation-"])
         bitrate = str(values["-bitrate-"])
         picture = str(values["-picture-"])
@@ -159,11 +151,12 @@ while True:
         rifeusage = str(values["-rifeusage-"])
         codec = str(values["-codec-"])
 
+        setting = [codec,bitrate,rifever,rifeusage,interpolation,picture,jpgquality]
 
         window["開始"].update(disabled=True)
 
         if __name__ == "__main__":
             process = concurrent.futures.ThreadPoolExecutor(max_workers=1)
-            process.submit(processfunc,rifever,interpolation,bitrate,picture,jpgquality,rifeusage,video_list,codec)
+            process.submit(processfunc,setting)
 
 sys.exit
