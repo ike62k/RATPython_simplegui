@@ -1,4 +1,4 @@
-#RIFE AutomationTool Python SimpleGUI Ver1.1 2022/4
+#RIFE AutomationTool Python SimpleGUI Ver1.2 2022/9/14
 
 import PySimpleGUI as sg
 import os
@@ -37,6 +37,7 @@ systemrunner = False
 startchecker = False
 endchecker = False
 closetab = False
+process_status = False
 themename = str(configdata.get("THEME")) #https://pysimplegui.readthedocs.io/en/latest/readme/#themes
 
 #from以下には使用したいRIFEAutomationToolのファイル名を記入(基本的にバージョンアップごとに機能が変わっているので、変更は完全非推奨)
@@ -44,6 +45,7 @@ from RIFEAT import mainfunc
 
 
 def processfunc(setting):
+    global process_status
     for video in video_list:
         try:
             print(f"{video}の補完処理を開始します")
@@ -55,6 +57,7 @@ def processfunc(setting):
             print(f"{video}の補完処理に成功しました")
     print("すべての作業が完了しました")
     window["開始"].update(disabled=False)
+    process_status = False
 
 
 def listupdate():
@@ -70,7 +73,7 @@ layout = [
     [sg.Listbox(video_list, size=(100,5),key="-listlist-")],
     [sg.Input(key="-selectdelete-", size=(5,1)), sg.Button("番目のファイルを削除する"), sg.Button("リストの最後を削除する"), sg.Button('リストをすべて削除する')],
     [sg.Text("Option")],
-    [sg.Text("・RIFE-"), sg.Combo(["無印","anime","HD","UHD","v2","v2.4","v3.0","v3.1"], default_value= Default_ver, key="-rifever-", size=(6,1), readonly=True), sg.Text("    ・補完倍率"), sg.Combo(["2","4"], default_value= Default_interpolation, key="-interpolation-"), sg.Text("    ・ビットレート"), sg.Input(default_text=Default_bitrate, key="-bitrate-", size=(8,1)), sg.Text("bps"), sg.Text("    ・コーデック"), sg.Input(default_text=Default_codec, key="-codec-", size=(10,1))],
+    [sg.Text("・RIFE-"), sg.Combo(["無印","anime","HD","UHD","v2","v2.4","v3.0","v3.1","v4"], default_value= Default_ver, key="-rifever-", size=(6,1), readonly=True), sg.Text("    ・補完倍率"), sg.Combo(["2","4"], default_value= Default_interpolation, key="-interpolation-"), sg.Text("    ・ビットレート"), sg.Input(default_text=Default_bitrate, key="-bitrate-", size=(8,1)), sg.Text("bps"), sg.Text("    ・コーデック"), sg.Input(default_text=Default_codec, key="-codec-", size=(10,1))],
     [sg.Text("・画像コーデック"), sg.Combo(["jpg","png"], default_value = Default_picture, key="-picture-", readonly=True), sg.Text("    ・画像品質"), sg.Input(default_text=Default_jpgquality, key="-jpgquality-", size=(20,1)), sg.Text("    ・RIFEスレッド数"), sg.Input(default_text = Default_rifeusage, key="-rifeusage-", size=(16,1))],
     [sg.Output(size=(100,20), key="-Reply-", )],
     [sg.Button("ファイルを確認する"), sg.Button("開始")],
@@ -82,6 +85,7 @@ window = sg.Window("RIFE", layout)
 
 while True:
     event, values= window.read()
+
     if event == sg.WINDOW_CLOSED:
         closetab = True
         break
@@ -154,6 +158,7 @@ while True:
         setting = [codec,bitrate,rifever,rifeusage,interpolation,picture,jpgquality]
 
         window["開始"].update(disabled=True)
+        process_status = True
 
         if __name__ == "__main__":
             process = concurrent.futures.ThreadPoolExecutor(max_workers=1)
