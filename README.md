@@ -2,7 +2,7 @@
 # 重要
 **このプログラムはRIFEAutomationToolPython Version 1.x用のアドオンです。<br>
 Version2.x~には対応しませんのでご注意ください、またそれに伴ってこのアドオンの開発は凍結しています。<br>
-Version2.xでのGUI実装の予定は[RIFEAutomationToolPython](https://github.com/ike62k/RIFEAutomationToolPython)を参照してください。**
+Version2.xでのGUI実装は本体リポジトリ[RIFEAutomationToolPython](https://github.com/ike62k/RIFEAutomationToolPython)で作成されています。**
 
 [RIFEAutomationToolPython](https://github.com/ike62k/RIFEAutomationToolPython)のGUI動作用アドオン。左記のプログラムに付け加える形で動作します<br>
 Python本体に付け加えて、外部ライブラリである[PySimpleGUI](https://pysimplegui.readthedocs.io/en/latest/)を使用しています<br>
